@@ -3,11 +3,12 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const rug = require('random-username-generator');
+
 const PORT = process.env.PORT || 8080;
+
 app.get('/', function(req, res) {
-    res.render('index.ejs', {
-        port: PORT
-    });
+    console.log(PORT);
+    res.render('index.ejs', {PORT : PORT});
 });
 
 io.sockets.on('connection', function(socket) {
