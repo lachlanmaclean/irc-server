@@ -13,7 +13,8 @@
 
 <script>
     //var socket = io.connect('http://localhost:8080');
-    var socket = io.connect(`http://localhost:<%=PORT%>`);
+    var socket = io.connect(`http://matrix-irc.herokuapp.com:<%=port%>`);
+    socket.emit('username');
     // submit text message without reload/refresh the page
     $('form').submit(function(e){
         e.preventDefault(); // prevents page reloading
@@ -30,8 +31,8 @@
         $('#messages').append($('<li>').html(username));
     });
     // ask username
-    var username = console.log('User Connected');
-    socket.emit('username', username);
+
 </script>
+Connected on port: <%=port%>
 </body>
 </html>
