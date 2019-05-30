@@ -10,10 +10,12 @@ app.get('/', function(req, res) {
     res.render('index.ejs', {port : PORT});
 });
 
+app.use(express.static(__dirname + '/public'));
+
 io.sockets.on('connection', function(socket) {
     socket.on('username', function() {
         socket.username = rug.generate();
-        io.emit('is_online', ' <i>' + socket.username + ' join the chat..</i>');
+        io.emit('is_online', socket.username + ' join the chat..');
         console.log(socket.username + ' is online')
     });
 

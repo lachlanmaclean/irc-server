@@ -4,13 +4,28 @@
     <title>The Matrix</title>
     <script src="../../socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div id="scroller">
+Internet Relay Chat: Connected on port: <%=port%>
 <ul id="messages"></ul>
+    <div id="anchor"></div>
+</div>
+
+</body>
+
+
+
+
+<footer>
 <form action="/" method="POST" id="chatForm">
-    <input id="txt" autocomplete="off" autofocus="on" oninput="isTyping()" placeholder="type your message here..." /><button>Send</button>
+    Enter Message: <input id="txt" autocomplete="off" autofocus="on" oninput="isTyping()"  />
+    <button>Send</button>
 </form>
 
+
+</footer>
 <script>
 
     //var socket = io.connect('127.0.0.1:8080');
@@ -35,6 +50,4 @@
     // ask username
 
 </script>
-Connected on port: <%=port%>
-</body>
 </html>
