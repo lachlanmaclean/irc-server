@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="main">
 <head>
     <title>The Matrix</title>
     <script src="../../socket.io/socket.io.js"></script>
@@ -51,3 +51,22 @@ Internet Relay Chat: Connected on port: <%=port%>
 
 </script>
 </html>
+<script>
+    document.getElementById("main").addEventListener("click", clearNotifications);
+    let count =0;
+    let title = document.title;
+    function clearNotifications(){
+        count = 0;
+        changeTitle();
+    }
+    function changeTitle(){
+        count++;
+        if (count <= 4){
+            document.title=title;
+            console.log(count);
+        }else{
+            document.title = '[' + count +'] ' + title;
+            console.log(count);
+        }
+    }
+</script>
