@@ -3,9 +3,11 @@ const app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const rug = require('random-username-generator');
-
+const PORT = process.env.PORT || 8080;
 app.get('/', function(req, res) {
-    res.render('index.ejs');
+    res.render('index.ejs', {
+        port: PORT
+    });
 });
 
 io.sockets.on('connection', function(socket) {
@@ -27,6 +29,7 @@ io.sockets.on('connection', function(socket) {
         }
     });
 });
-const server = http.listen(8080, function() {
-    console.log('listening on *:8080');
+
+const server = http.listen(PORT, function() {
+    console.log('listening on *: ', PORT);
 });
