@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" id="main">
+<head>
+    <title></title>
+    <script src="../../socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="scroller">
+Internet Relay Chat: Connected on port: <%=port%>
+<ul id="messages"></ul>
+    <div id="anchor"></div>
+</div>
+
+</body>
+
+
+
+
+<footer>
+<form action="/" method="POST" id="chatForm">
+    Enter Message: <input id="txt" autocomplete="off" autofocus="on" oninput="isTyping()"  />
+    <button>Send</button>
+</form>
+
+
+</footer>
+<script>
+
+    //var socket = io.connect('127.0.0.1:8080');
+    //var socket = io.connect(`http://localhost:]`);
+    const socket = io.connect();
+    socket.emit('username');
+    // submit text message without reload/refresh the page
+    $('form').submit(function(e){
+        e.preventDefault(); // prevents page reloading
+        socket.emit('chat_message', $('#txt').val());
+        $('#txt').val('');
+        return false;
+    });
+    // append the chat text message
+    socket.on('chat_message', function(msg){
+        $('#messages').append($('<li>').html(msg));
+    });
+    // append text if someone is online
+    socket.on('is_online', function(username) {
+        $('#messages').append($('<li>').html(username));
+    });
+    // ask username
+
+</script>
+</html>
+<script>
+    document.getElementById("main").addEventListener("click", clearNotifications);
+    let count =0;
+    let title = document.title;
+    function clearNotifications(){
+        count = 0;
+        changeTitle();
+    }
+    function changeTitle(){
+        count++;
+        if (count <= 4){
+            document.title=title;
+            console.log(count);
+        }else{
+            document.title = '[' + count +'] ' + title;
+            console.log(count);
+        }
+    }
+</script>
