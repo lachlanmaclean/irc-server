@@ -1,6 +1,10 @@
+const fs = require('fs');
 const express = require('express');
 const app = express();
 const http = require('http').Server(app);
+const https = require('https');
+
+
 const io = require('socket.io')(http);
 const rug = require('random-username-generator');
 
@@ -9,7 +13,9 @@ const PORT = process.env.PORT || 8080;
 app.get('/', function(req, res) {
     res.render('index.ejs', {port : PORT});
 });
-
+app.get('/#', function(req, res) {
+    res.render('channel.ejs');
+});
 app.use(express.static(__dirname + '/public'));
 
 io.sockets.on('connection', function(socket) {
