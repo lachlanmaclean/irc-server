@@ -24,12 +24,13 @@ and to close nodemon
 CTRL + C
 ```
 
-##Running
+## Running
+
 To view the application, open a browser and navigate to [localhost:8080](http://localhost:8080) or 
 whatever port its running on
 
-###Todo
-Add
+### Todo
+
 ```
 Add https support 
 end to end encryption with a client app
